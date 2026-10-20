@@ -1,4 +1,4 @@
-// Nội dung lời chúc chung cho Phụ nữ gia đình
+// Lời chúc gửi phụ nữ nhà mình
 const wishMessage = "Kính chúc Mẹ, cô Nga, cô Nguyệt, cô Tiến và cô Hải luôn xinh đẹp, mạnh khỏe, hạnh phúc và luôn tràn ngập niềm vui. Cảm ơn những người phụ nữ tuyệt vời nhất của gia đình mình!";
 
 let isOpened = false;
@@ -14,26 +14,25 @@ function toggleCard() {
   isOpened = card.classList.contains('open');
 
   if (isOpened) {
-    // 1. Phát nhạc nền
+    // 1. Phát nhạc nền không lời
     if (bgMusic) {
       bgMusic.volume = 0.4;
       bgMusic.play().catch(e => console.log("Lỗi phát nhạc:", e));
     }
 
-    // 2. Chạy hiệu ứng chữ và đọc lời chúc
+    // 2. Chạy hiệu ứng gõ chữ và phát giọng đọc
     if (typeIndex === 0) {
       setTimeout(typeWriter, 500);
       playGreetingSound();
     }
   } else {
-    // Đóng thiệp thì dừng nhạc
     if (bgMusic) {
       bgMusic.pause();
     }
   }
 }
 
-// Hiệu ứng chữ chạy từng tự
+// Hiệu ứng chữ chạy tự động
 function typeWriter() {
   if (typeIndex < wishMessage.length) {
     document.getElementById("typedText").innerHTML += wishMessage.charAt(typeIndex);
