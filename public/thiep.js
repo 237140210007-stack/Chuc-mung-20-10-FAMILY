@@ -1,11 +1,11 @@
-// Lời chúc gửi phụ nữ nhà mình
+// Lời chúc gửi đến phụ nữ nhà mình
 const wishMessage = "Kính chúc Mẹ, cô Nga, cô Nguyệt, cô Tiến và cô Hải luôn xinh đẹp, mạnh khỏe, hạnh phúc và luôn tràn ngập niềm vui. Cảm ơn những người phụ nữ tuyệt vời nhất của gia đình mình!";
 
 let isOpened = false;
 let typeIndex = 0;
 let player;
 
-// Khởi tạo trình phát YouTube từ video https://youtu.be/WWpCi2xYUOc
+// Tự động gắn nhạc từ ID YouTube WWpCi2xYUOc khi API sẵn sàng
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('yt-player', {
     height: '0',
@@ -30,15 +30,15 @@ function toggleCard() {
   isOpened = card.classList.contains('open');
 
   if (isOpened) {
-    // 1. Phát nhạc từ YouTube (hoặc nhạc dự phòng nếu bị chặn)
+    // 1. Kích hoạt phát nhạc YouTube chuẩn xác
     if (player && typeof player.playVideo === 'function') {
       player.playVideo();
     } else if (bgMusic) {
       bgMusic.volume = 0.4;
-      bgMusic.play().catch(e => console.log("Lỗi phát nhạc:", e));
+      bgMusic.play().catch(e => console.log("Lỗi phát nhạc dự phòng:", e));
     }
 
-    // 2. Chạy hiệu ứng gõ chữ và phát lời đọc
+    // 2. Chạy hiệu ứng gõ chữ & giọng đọc
     if (typeIndex === 0) {
       setTimeout(typeWriter, 500);
       playGreetingSound();
@@ -54,7 +54,7 @@ function toggleCard() {
   }
 }
 
-// Hiệu ứng chữ chạy tự động
+// Hiệu ứng chữ gõ tự động
 function typeWriter() {
   if (typeIndex < wishMessage.length) {
     document.getElementById("typedText").innerHTML += wishMessage.charAt(typeIndex);
