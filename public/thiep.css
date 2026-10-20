@@ -15,21 +15,21 @@ body {
   perspective: 1200px;
 }
 
-/* Tối ưu kích thước thiệp khi có ảnh */
+/* Khung thiệp */
 .card {
   width: 330px;
-  height: 480px; /* Tăng chiều cao thiệp một chút để chứa ảnh */
+  height: 480px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
   cursor: pointer;
-  box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+  box-shadow: 0 15px 35px rgba(255, 105, 180, 0.35);
   border-radius: 20px;
 }
 
-/* Khi bấm mở thiệp */
+/* Khi bấm mở: Thiệp lật thẳng chính diện 180 độ */
 .card.open {
-  transform: rotateY(-140deg);
+  transform: rotateY(-180deg);
 }
 
 .card-front, .card-inside {
@@ -84,7 +84,7 @@ body {
   50% { opacity: 1; }
 }
 
-/* Mặt trong thiệp */
+/* Mặt trong thiệp (Xoay ngược lại để khi thiệp mở ra sẽ hiển thị xuôi chiều) */
 .card-inside {
   background: #ffffff;
   color: #d81b60;
@@ -93,26 +93,27 @@ body {
 }
 
 .card-inside .title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   margin: 5px 0;
   color: #e91e63;
+  font-weight: bold;
 }
 
-/* Khung và hiệu ứng bo tròn cho bức ảnh Mẹ */
+/* Khung và hiệu ứng bo tròn ảnh Mẹ */
 .mother-photo-container {
-  margin: 8px 0;
+  margin: 6px 0;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .mother-photo {
-  width: 120px;
-  height: 120px;
+  width: 125px;
+  height: 125px;
   object-fit: cover;
-  border-radius: 50%; /* Làm ảnh thành hình tròn sinh động */
+  border-radius: 50%;
   border: 3px solid #ff758c;
-  box-shadow: 0 4px 10px rgba(233, 30, 99, 0.3);
+  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.35);
   transition: transform 0.3s ease;
 }
 
@@ -137,7 +138,7 @@ body {
   margin-bottom: 5px;
 }
 
-/* Hiệu ứng hoa/trái tim rơi nền */
+/* Hiệu ứng hoa rơi nền */
 .snowflake {
   position: fixed;
   top: -10%;
