@@ -10,16 +10,17 @@ body {
   overflow: hidden;
 }
 
+/* Container chính của thiệp */
 .card-container {
   perspective: 1200px;
   position: relative;
-  margin-top: 40px; /* Đẩy toàn bộ thiệp xuống một chút để ảnh Mẹ ở trên có không gian hiển thị */
+  margin-top: 60px; /* Đẩy xuống đủ khoảng trống cho ảnh Mẹ ở trên đỉnh */
 }
 
-/* Khung thiệp chính */
+/* Khung thiệp */
 .card {
-  width: 340px;
-  height: 500px;
+  width: 330px;
+  height: 480px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -29,7 +30,7 @@ body {
   z-index: 10;
 }
 
-/* Mở thiệp xoay thẳng đứng chính diện */
+/* Khi bấm mở thiệp xoay thẳng chính diện */
 .card.open {
   transform: rotateY(-180deg);
 }
@@ -40,7 +41,7 @@ body {
   height: 100%;
   backface-visibility: hidden;
   border-radius: 20px;
-  padding: 25px 20px 20px 20px;
+  padding: 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -96,15 +97,15 @@ body {
 
 .card-inside .title {
   font-size: 1.1rem;
-  margin: 15px 0 5px 0; /* Tăng lề trên để tạo khoảng trống thoáng cho dòng tiêu đề */
+  margin: 10px 0 5px 0;
   color: #e91e63;
   font-weight: bold;
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
-/* TRÁI TIM ĐẬP Ở TRUNG TÂM */
+/* TRÁI TIM ĐẬP Ở CHÍNH GIỮA THIỆP */
 .center-heart-container {
-  margin: 10px 0;
+  margin: 5px 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -126,7 +127,7 @@ body {
   font-size: 0.92rem;
   line-height: 1.55;
   color: #444;
-  min-height: 105px;
+  min-height: 100px;
   text-align: left;
   margin: 5px 0;
   width: 100%;
@@ -140,7 +141,7 @@ body {
 }
 
 /* ======================================================== */
-/* BỐ CỤC NỔI BẬT: ĐẨY ẢNH MẸ LÊN TRÊN HẲN & 4 ẢNH CÔ DÀI RA 2 BÊN */
+/* ĐIỀU CHỈNH CHUẨN TỌA ĐỘ 5 ẢNH PHỤ NỮ (NỔI BẬT & THOÁNG ĐÃNG) */
 /* ======================================================== */
 .floating-photos {
   position: absolute;
@@ -149,7 +150,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 25;
+  z-index: 30; /* Nổi hẳn lên trên lớp thiệp */
 }
 
 .photo-item {
@@ -165,85 +166,85 @@ body {
 }
 
 .photo-item img {
-  width: 105px;
-  height: 105px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
   border-radius: 50%;
   border: 4px solid #ffffff;
-  box-shadow: 0 8px 22px rgba(233, 30, 99, 0.45);
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
 }
 
 .photo-item span {
   background: #ffffff;
   color: #d81b60;
-  padding: 4px 12px;
-  border-radius: 15px;
-  font-size: 0.82rem;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
   font-weight: bold;
-  margin-top: 5px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+  margin-top: 4px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
   white-space: nowrap;
 }
 
-/* CẤU HÌNH TỌA ĐỘ BUNG XÒE CHUẨN ĐẸP KHÔNG BỊ ĐÈ CHỮ */
+/* TỌA ĐỘ CÂN ĐỐI KHI MỞ THIỆP */
 
-/* 1. Ảnh Mẹ: Đẩy cao vút hẳn lên đỉnh (-320px) vượt qua mép trên thiệp */
+/* 1. Ảnh Mẹ Yêu: Đẩy lên đỉnh cao hẳn (-340px) thoát hoàn toàn khỏi tiêu đề */
 .card-container.open-active .photo-top {
-  transform: translate(-50%, -320px) scale(1.05);
+  transform: translate(-50%, -340px) scale(1.05);
   opacity: 1;
 }
 
-/* 2. Cô Tiên (Trái Trên): Đẩy rộng sang trái (-260px) */
+/* 2. Cô Tiên (Trái Trên): Đẩy rộng sang trái (-270px) */
 .card-container.open-active .photo-top-left {
-  transform: translate(-260px, -150px) scale(1) rotate(-6deg);
+  transform: translate(-270px, -160px) scale(1) rotate(-6deg);
   opacity: 1;
 }
 
-/* 3. Cô Nguyệt (Phải Trên): Đẩy rộng sang phải (150px) */
+/* 3. Cô Nguyệt (Phải Trên): Đẩy rộng sang phải (170px) */
 .card-container.open-active .photo-top-right {
-  transform: translate(150px, -150px) scale(1) rotate(6deg);
+  transform: translate(170px, -160px) scale(1) rotate(6deg);
   opacity: 1;
 }
 
-/* 4. Cô Nga (Trái Dưới): Đẩy rộng sang trái (-260px) */
+/* 4. Cô Nga (Trái Dưới): Đẩy rộng sang trái (-270px) */
 .card-container.open-active .photo-bottom-left {
-  transform: translate(-260px, 140px) scale(1) rotate(5deg);
+  transform: translate(-270px, 130px) scale(1) rotate(5deg);
   opacity: 1;
 }
 
-/* 5. Cô Hải (Phải Dưới): Đẩy rộng sang phải (150px) */
+/* 5. Cô Hải (Phải Dưới): Đẩy rộng sang phải (170px) */
 .card-container.open-active .photo-bottom-right {
-  transform: translate(150px, 140px) scale(1) rotate(-5deg);
+  transform: translate(170px, 130px) scale(1) rotate(-5deg);
   opacity: 1;
 }
 
-/* Tối ưu riêng cho màn hình điện thoại di động */
+/* Responsive cho thiết bị di động */
 @media (max-width: 768px) {
   .card-container {
-    margin-top: 30px;
+    margin-top: 40px;
   }
   .card {
     width: 280px;
-    height: 450px;
+    height: 440px;
   }
   .photo-item img {
-    width: 80px;
-    height: 80px;
+    width: 75px;
+    height: 75px;
   }
   .card-container.open-active .photo-top {
-    transform: translate(-50%, -285px) scale(0.95);
+    transform: translate(-50%, -295px) scale(0.95);
   }
   .card-container.open-active .photo-top-left {
-    transform: translate(-185px, -140px) scale(0.85);
+    transform: translate(-185px, -145px) scale(0.85);
   }
   .card-container.open-active .photo-top-right {
-    transform: translate(105px, -140px) scale(0.85);
+    transform: translate(110px, -145px) scale(0.85);
   }
   .card-container.open-active .photo-bottom-left {
-    transform: translate(-185px, 135px) scale(0.85);
+    transform: translate(-185px, 125px) scale(0.85);
   }
   .card-container.open-active .photo-bottom-right {
-    transform: translate(105px, 135px) scale(0.85);
+    transform: translate(110px, 125px) scale(0.85);
   }
 }
 
