@@ -18,13 +18,13 @@
     <div class="snowflake">✨</div>
   </div>
 
-  <!-- Nút điều khiển Bật/Tắt nhạc dành riêng cho điện thoại -->
-  <div class="music-control" onclick="toggleMusic(event)">
+  <!-- Nút Bật/Tắt Nhạc nổi ở góc trên -->
+  <div class="music-control" id="musicBtn" onclick="toggleMusic(event)">
     <span id="musicIcon">🎵</span>
   </div>
 
   <div class="card-container">
-    <!-- 5 Bức ảnh phân bố 2 bên (Trái: Tiên, Nga | Phải: Nguyệt, Mẹ, Hải) -->
+    <!-- 5 Bức ảnh phân bố 2 bên -->
     <div class="floating-photos">
       <div class="photo-item photo-left-top">
         <img src="/Tien.jpg" alt="Tiên">
@@ -61,7 +61,7 @@
       <div class="card-inside">
         <h3 class="title">Kính Chúc Phụ Nữ Nhà Mình Nhân Ngày Yêu Thương 20/10! 🌹</h3>
         
-        <!-- Trái tim 3D ở trung tâm -->
+        <!-- Trái tim 3D -->
         <div class="center-heart-container">
           <div class="beating-heart">💖</div>
         </div>
@@ -72,8 +72,8 @@
     </div>
   </div>
 
-  <!-- Nhạc nền không lời tương thích 100% Mobile -->
-  <audio id="bgMusic" loop playsinline preload="auto">
+  <!-- Thẻ Audio phát nhạc tương thích tuyệt đối di động & Zalo -->
+  <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
     <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
   </audio>
 
