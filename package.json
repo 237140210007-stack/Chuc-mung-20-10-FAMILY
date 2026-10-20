@@ -1,14 +1,13 @@
 {
   "name": "chuc-mung-20-10-family",
   "version": "1.0.0",
-  "description": " Thiệp Chúc Mừng ",
+  "description": "Website Thiep Chuc Mung 20-10 Cho Me",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "socket.io": "^4.6.1"
+    "express": "^4.18.2"
   },
   "engines": {
     "node": ">=18.0.0"
