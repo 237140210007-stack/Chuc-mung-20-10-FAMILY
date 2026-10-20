@@ -19,25 +19,25 @@
   </div>
 
   <div class="card-container">
-    <!-- 5 Bức ảnh phụ nữ nhà mình -->
+    <!-- 5 Bức ảnh phân bố đều 2 bên (Trái: Tiên, Nga | Phải: Nguyệt, Mẹ, Hải) -->
     <div class="floating-photos">
-      <div class="photo-item photo-top">
-        <img src="/me.jpg" alt="Mẹ">
-        <span>Mẹ Yêu 💖</span>
-      </div>
-      <div class="photo-item photo-top-left">
+      <div class="photo-item photo-left-top">
         <img src="/Tien.jpg" alt="Tiên">
         <span>Cô Tiến 🌸</span>
       </div>
-      <div class="photo-item photo-top-right">
-        <img src="/Nguyet.jpg" alt="Nguyệt">
-        <span>Cô Nguyệt ✨</span>
-      </div>
-      <div class="photo-item photo-bottom-left">
+      <div class="photo-item photo-left-bottom">
         <img src="/Nga.jpg" alt="Nga">
         <span>Cô Nga 🌷</span>
       </div>
-      <div class="photo-item photo-bottom-right">
+      <div class="photo-item photo-right-top">
+        <img src="/Nguyet.jpg" alt="Nguyệt">
+        <span>Cô Nguyệt ✨</span>
+      </div>
+      <div class="photo-item photo-right-middle">
+        <img src="/me.jpg" alt="Mẹ">
+        <span>Mẹ Yêu 💖</span>
+      </div>
+      <div class="photo-item photo-right-bottom">
         <img src="/Hai.jpg" alt="Hải">
         <span>Cô Hải 🌺</span>
       </div>
@@ -56,7 +56,7 @@
       <div class="card-inside">
         <h3 class="title">Kính Chúc Phụ Nữ Nhà Mình Nhân Ngày Yêu Thương 20/10! 🌹</h3>
         
-        <!-- Trái tim 3D ở trung tâm -->
+        <!-- Trái tim 3D đập ở trung tâm -->
         <div class="center-heart-container">
           <div class="beating-heart">💖</div>
         </div>
@@ -67,15 +67,15 @@
     </div>
   </div>
 
-  <!-- Trình phát YouTube ẩn cho bài nhạc WWpCi2xYUOc -->
+  <!-- Trình phát YouTube ẩn cho bản nhạc WWpCi2xYUOc -->
   <div id="yt-player" style="position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none;"></div>
 
-  <!-- Audio dự phòng nhạc MP3 nhẹ nhàng -->
+  <!-- Audio MP3 dự phòng -->
   <audio id="bgMusic" loop preload="auto">
     <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Nạp API YouTube -->
+  <!-- Nhúng YouTube API SDK -->
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="/thiep.js"></script>
 </body>
