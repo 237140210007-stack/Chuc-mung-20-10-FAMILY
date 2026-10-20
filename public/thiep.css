@@ -28,7 +28,7 @@ body {
   z-index: 10;
 }
 
-/* Mở thiệp thẳng đứng 180 độ */
+/* Mở thiệp thẳng đứng chính diện */
 .card.open {
   transform: rotateY(-180deg);
 }
@@ -100,20 +100,24 @@ body {
   font-weight: bold;
 }
 
-.mother-photo-container {
-  margin: 4px 0;
+/* TRÁI TIM 3D ĐẬP Ở CHÍNH GIỮA THIỆP */
+.center-heart-container {
+  margin: 5px 0;
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.mother-photo {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #ff758c;
-  box-shadow: 0 4px 12px rgba(233, 30, 99, 0.35);
+.beating-heart {
+  font-size: 4.2rem;
+  animation: heartPulse 1s infinite alternate ease-in-out;
+  filter: drop-shadow(0 4px 8px rgba(233, 30, 99, 0.4));
+}
+
+@keyframes heartPulse {
+  0% { transform: scale(0.95); }
+  100% { transform: scale(1.2); }
 }
 
 .card-inside .message {
@@ -122,7 +126,7 @@ body {
   color: #444;
   min-height: 105px;
   text-align: left;
-  margin: 4px 0;
+  margin: 5px 0;
   width: 100%;
 }
 
@@ -134,7 +138,7 @@ body {
 }
 
 /* ======================================================== */
-/* HIỆU ỨNG CÁC ẢNH PHỤ (TIÊN, NGUYỆT, NGA, HẢI) XÒE RA 4 HƯỚNG */
+/* 5 ẢNH TỰ ĐỘNG BUNG XÒE RỘNG RÃI NỔI BẬT XUNG QUANH THIỆP */
 /* ======================================================== */
 .floating-photos {
   position: absolute;
@@ -143,7 +147,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 5;
+  z-index: 20; /* Nổi lên trên để không bị thiệp che */
 }
 
 .photo-item {
@@ -152,70 +156,83 @@ body {
   left: 50%;
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 1.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .photo-item img {
-  width: 85px;
-  height: 85px;
+  width: 95px;
+  height: 95px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #ffffff;
-  box-shadow: 0 6px 15px rgba(233, 30, 99, 0.4);
+  border: 4px solid #ffffff;
+  box-shadow: 0 8px 20px rgba(233, 30, 99, 0.45);
 }
 
 .photo-item span {
   background: #ffffff;
   color: #d81b60;
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 12px;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: bold;
-  margin-top: 4px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  margin-top: 5px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  white-space: nowrap;
 }
 
-/* Khi mở thiệp (class .open): Bung các ảnh ra các góc */
+/* Khoảng cách đẩy rộng hẳn ra ngoài khung thiệp (330px) */
+.card-container.open-active .photo-top {
+  transform: translate(-50%, -310px) scale(1.05);
+  opacity: 1;
+}
+
 .card-container.open-active .photo-top-left {
-  transform: translate(-230px, -180px) scale(1) rotate(-8deg);
+  transform: translate(-265px, -180px) scale(1) rotate(-8deg);
   opacity: 1;
 }
 
 .card-container.open-active .photo-top-right {
-  transform: translate(145px, -180px) scale(1) rotate(8deg);
+  transform: translate(175px, -180px) scale(1) rotate(8deg);
   opacity: 1;
 }
 
 .card-container.open-active .photo-bottom-left {
-  transform: translate(-230px, 120px) scale(1) rotate(6deg);
+  transform: translate(-265px, 120px) scale(1) rotate(6deg);
   opacity: 1;
 }
 
 .card-container.open-active .photo-bottom-right {
-  transform: translate(145px, 120px) scale(1) rotate(-6deg);
+  transform: translate(175px, 120px) scale(1) rotate(-6deg);
   opacity: 1;
 }
 
-/* Tối ưu hiển thị trên màn hình điện thoại di động */
-@media (max-width: 600px) {
+/* Hỗ trợ màn hình điện thoại di động */
+@media (max-width: 768px) {
   .card {
-    width: 290px;
+    width: 280px;
     height: 440px;
   }
+  .photo-item img {
+    width: 75px;
+    height: 75px;
+  }
+  .card-container.open-active .photo-top {
+    transform: translate(-50%, -270px) scale(0.95);
+  }
   .card-container.open-active .photo-top-left {
-    transform: translate(-150px, -210px) scale(0.85);
+    transform: translate(-195px, -160px) scale(0.85);
   }
   .card-container.open-active .photo-top-right {
-    transform: translate(65px, -210px) scale(0.85);
+    transform: translate(120px, -160px) scale(0.85);
   }
   .card-container.open-active .photo-bottom-left {
-    transform: translate(-150px, 180px) scale(0.85);
+    transform: translate(-195px, 140px) scale(0.85);
   }
   .card-container.open-active .photo-bottom-right {
-    transform: translate(65px, 180px) scale(0.85);
+    transform: translate(120px, 140px) scale(0.85);
   }
 }
 
