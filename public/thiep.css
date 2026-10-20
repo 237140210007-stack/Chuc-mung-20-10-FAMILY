@@ -10,9 +10,9 @@ body {
   overflow: hidden;
 }
 
-/* Thùng chứa thiệp hiệu ứng 3D */
 .card-container {
   perspective: 1200px;
+  position: relative;
 }
 
 /* Khung thiệp */
@@ -25,9 +25,10 @@ body {
   cursor: pointer;
   box-shadow: 0 15px 35px rgba(255, 105, 180, 0.35);
   border-radius: 20px;
+  z-index: 10;
 }
 
-/* Khi bấm mở: Thiệp lật thẳng chính diện 180 độ */
+/* Mở thiệp thẳng đứng 180 độ */
 .card.open {
   transform: rotateY(-180deg);
 }
@@ -67,7 +68,7 @@ body {
 }
 
 .card-front h2 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   margin: 10px 0;
   text-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 }
@@ -84,7 +85,7 @@ body {
   50% { opacity: 1; }
 }
 
-/* Mặt trong thiệp (Xoay ngược lại để khi thiệp mở ra sẽ hiển thị xuôi chiều) */
+/* Mặt trong thiệp */
 .card-inside {
   background: #ffffff;
   color: #d81b60;
@@ -93,52 +94,132 @@ body {
 }
 
 .card-inside .title {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   margin: 5px 0;
   color: #e91e63;
   font-weight: bold;
 }
 
-/* Khung và hiệu ứng bo tròn ảnh Mẹ */
 .mother-photo-container {
-  margin: 6px 0;
+  margin: 4px 0;
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
 .mother-photo {
-  width: 125px;
-  height: 125px;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid #ff758c;
   box-shadow: 0 4px 12px rgba(233, 30, 99, 0.35);
-  transition: transform 0.3s ease;
-}
-
-.card.open .mother-photo {
-  transform: scale(1.05);
 }
 
 .card-inside .message {
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   line-height: 1.5;
   color: #444;
-  min-height: 110px;
+  min-height: 105px;
   text-align: left;
-  margin: 5px 0;
+  margin: 4px 0;
   width: 100%;
 }
 
 .signature {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: #e91e63;
   margin-bottom: 5px;
 }
 
-/* Hiệu ứng hoa rơi nền */
+/* ======================================================== */
+/* HIỆU ỨNG CÁC ẢNH PHỤ (TIÊN, NGUYỆT, NGA, HẢI) XÒE RA 4 HƯỚNG */
+/* ======================================================== */
+.floating-photos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.photo-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-item img {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 6px 15px rgba(233, 30, 99, 0.4);
+}
+
+.photo-item span {
+  background: #ffffff;
+  color: #d81b60;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-top: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Khi mở thiệp (class .open): Bung các ảnh ra các góc */
+.card-container.open-active .photo-top-left {
+  transform: translate(-230px, -180px) scale(1) rotate(-8deg);
+  opacity: 1;
+}
+
+.card-container.open-active .photo-top-right {
+  transform: translate(145px, -180px) scale(1) rotate(8deg);
+  opacity: 1;
+}
+
+.card-container.open-active .photo-bottom-left {
+  transform: translate(-230px, 120px) scale(1) rotate(6deg);
+  opacity: 1;
+}
+
+.card-container.open-active .photo-bottom-right {
+  transform: translate(145px, 120px) scale(1) rotate(-6deg);
+  opacity: 1;
+}
+
+/* Tối ưu hiển thị trên màn hình điện thoại di động */
+@media (max-width: 600px) {
+  .card {
+    width: 290px;
+    height: 440px;
+  }
+  .card-container.open-active .photo-top-left {
+    transform: translate(-150px, -210px) scale(0.85);
+  }
+  .card-container.open-active .photo-top-right {
+    transform: translate(65px, -210px) scale(0.85);
+  }
+  .card-container.open-active .photo-bottom-left {
+    transform: translate(-150px, 180px) scale(0.85);
+  }
+  .card-container.open-active .photo-bottom-right {
+    transform: translate(65px, 180px) scale(0.85);
+  }
+}
+
+/* Hiệu ứng hoa rơi */
 .snowflake {
   position: fixed;
   top: -10%;
