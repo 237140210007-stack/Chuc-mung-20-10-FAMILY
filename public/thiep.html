@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gửi Mẹ Yêu Thương 💖</title>
+  <title>Gia Đình Gửi Phụ Nữ Yêu Thương 💖</title>
   <link rel="stylesheet" href="/thiep.css">
 </head>
 <body>
@@ -19,25 +19,46 @@
   </div>
 
   <div class="card-container">
+    <!-- Các bức ảnh xung quanh thiệp (Xòe ra các phía khi mở thiệp) -->
+    <div class="floating-photos">
+      <div class="photo-item photo-top-left">
+        <img src="/Tien.jpg" alt="Ảnh Tiên">
+        <span>Tiên 💖</span>
+      </div>
+      <div class="photo-item photo-top-right">
+        <img src="/Nguyet.jpg" alt="Ảnh Nguyệt">
+        <span>Nguyệt 🌸</span>
+      </div>
+      <div class="photo-item photo-bottom-left">
+        <img src="/Nga.jpg" alt="Ảnh Nga">
+        <span>Nga ✨</span>
+      </div>
+      <div class="photo-item photo-bottom-right">
+        <img src="/Hai.jpg" alt="Ảnh Hải">
+        <span>Hải 🌷</span>
+      </div>
+    </div>
+
+    <!-- Khung thiệp chính -->
     <div class="card" onclick="toggleCard()">
       <!-- Mặt ngoài thiệp -->
       <div class="card-front">
         <div class="heart-icon">❤️</div>
-        <h2>Gửi Mẹ Yêu Thương!</h2>
+        <h2>Gửi Mẹ & Phụ Nữ Nhà Mình!</h2>
         <p class="tap-hint">👉 Bấm vào đây để mở thiệp nhé 👈</p>
       </div>
 
       <!-- Mặt trong thiệp -->
       <div class="card-inside">
-        <h3 class="title">Kính Chúc Mẹ Yêu Ngày 20 tháng 10! 🌹</h3>
+        <h3 class="title">Kính Chúc Phụ Nữ Nhà Mình Nhân Ngày Yêu Thương 20/10! 🌹</h3>
         
-        <!-- Khung chứa bức ảnh của Mẹ -->
+        <!-- Ảnh Mẹ ở trung tâm thiệp -->
         <div class="mother-photo-container">
           <img src="/me.jpg" alt="Ảnh Mẹ Yêu" class="mother-photo">
         </div>
 
         <p id="typedText" class="message"></p>
-        <div class="signature">Con yêu Mẹ rất nhiều! ❤️</div>
+        <div class="signature">Gia đình yêu thương rất nhiều! ❤️</div>
       </div>
     </div>
   </div>
