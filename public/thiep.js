@@ -1,59 +1,59 @@
-// Lời chúc gửi đến phụ nữ nhà mình
-const wishMessage = "Kính chúc Mẹ, cô Nga, cô Nguyệt, cô Tiến và cô Hải luôn xinh đẹp, mạnh khỏe, hạnh phúc và luôn tràn ngập niềm vui. Cảm ơn những người phụ nữ tuyệt vời nhất của gia đình!";
+const wishMessage = "Kính chúc Mẹ, cô Nga, cô Nguyệt, cô Tiến và cô Hải luôn xinh đẹp, mạnh khỏe, hạnh phúc và luôn tràn ngập niềm vui. Cảm ơn những người phụ nữ tuyệt vời nhất của gia đình mình!";
 
 let isOpened = false;
 let typeIndex = 0;
 let isPlaying = false;
 
-// Tự động tải trước nhạc để sẵn sàng phát trên điện thoại
-window.addEventListener('DOMContentLoaded', () => {
-  const bgMusic = document.getElementById('bgMusic');
+const bgMusic = document.getElementById('bgMusic');
+
+// Kích hoạt unlock Audio trên iOS Safari / Zalo Browser ngay khi có bất kỳ tương tác chạm vào màn hình
+function unlockAudio() {
   if (bgMusic) {
-    bgMusic.load();
+    bgMusic.play().then(() => {
+      bgMusic.pause();
+    }).catch(() => {});
   }
-});
+  document.removeEventListener('touchstart', unlockAudio);
+  document.removeEventListener('click', unlockAudio);
+}
+document.addEventListener('touchstart', unlockAudio, { once: true });
+document.addEventListener('click', unlockAudio, { once: true });
 
 function toggleCard() {
   const card = document.querySelector('.card');
   const cardContainer = document.querySelector('.card-container');
-  
+
   card.classList.toggle('open');
   cardContainer.classList.toggle('open-active');
   isOpened = card.classList.contains('open');
 
   if (isOpened) {
-    // Kích hoạt phát nhạc khi mở thiệp
-    startMusic();
-
-    // Hiệu ứng chữ chạy tự động
+    playMusic();
     if (typeIndex === 0) {
       setTimeout(typeWriter, 500);
     }
   } else {
-    // Đóng thiệp thì dừng nhạc
-    stopMusic();
+    pauseMusic();
   }
 }
 
-function startMusic() {
-  const bgMusic = document.getElementById('bgMusic');
+function playMusic() {
   const musicIcon = document.getElementById('musicIcon');
   if (bgMusic) {
-    bgMusic.volume = 0.5;
-    const playPromise = bgMusic.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
+    bgMusic.volume = 0.6;
+    const promise = bgMusic.play();
+    if (promise !== undefined) {
+      promise.then(() => {
         isPlaying = true;
         if (musicIcon) musicIcon.classList.add('playing');
-      }).catch(error => {
-        console.log("Trình duyệt điện thoại chờ tương tác nút nhạc:", error);
+      }).catch(err => {
+        console.log("Cần bấm nút nhạc để phát:", err);
       });
     }
   }
 }
 
-function stopMusic() {
-  const bgMusic = document.getElementById('bgMusic');
+function pauseMusic() {
   const musicIcon = document.getElementById('musicIcon');
   if (bgMusic) {
     bgMusic.pause();
@@ -62,17 +62,15 @@ function stopMusic() {
   }
 }
 
-// Bật / Tắt nhạc chủ động khi bấm vào nút 🎵 góc trên
-function toggleMusic(event) {
-  event.stopPropagation(); // Tránh kích hoạt lật thiệp
+function toggleMusic(e) {
+  if (e) e.stopPropagation();
   if (isPlaying) {
-    stopMusic();
+    pauseMusic();
   } else {
-    startMusic();
+    playMusic();
   }
 }
 
-// Hiệu ứng gõ chữ từng ký tự
 function typeWriter() {
   if (typeIndex < wishMessage.length) {
     document.getElementById("typedText").innerHTML += wishMessage.charAt(typeIndex);
