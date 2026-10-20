@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gửi Mẹ Yêu Thương 💖</title>
+  <link rel="stylesheet" href="thiep.css">
+</head>
+<body>
+  <!-- Hiệu ứng hoa/trái tim rơi nền -->
+  <div class="snowflakes" aria-hidden="true">
+    <div class="snowflake">🌸</div>
+    <div class="snowflake">💖</div>
+    <div class="snowflake">🌸</div>
+    <div class="snowflake">✨</div>
+    <div class="snowflake">💖</div>
+    <div class="snowflake">🌸</div>
+    <div class="snowflake">✨</div>
+  </div>
+
+  <div class="card-container">
+    <div class="card" onclick="toggleCard()">
+      <!-- Mặt ngoài thiệp -->
+      <div class="card-front">
+        <div class="heart-icon">❤️</div>
+        <h2>Gửi Mẹ Yêu Thương!</h2>
+        <p class="tap-hint">👉 Bấm vào đây để mở thiệp nhé 👈</p>
+      </div>
+
+      <!-- Mặt trong thiệp -->
+      <div class="card-inside">
+        <h3 class="title">Kính Chúc Mẹ Yêu! 🌹</h3>
+        <p id="typedText" class="message"></p>
+        <div class="signature">Con yêu Mẹ rất nhiều! ❤️</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="thiep.js"></script>
+</body>
+</html>
