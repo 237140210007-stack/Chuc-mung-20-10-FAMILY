@@ -11,7 +11,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Nút Bật/Tắt Nhạc nổi ở góc trên hỗ trợ bấm nhạy trên Zalo / Điện thoại */
+/* Nút Bật/Tắt Nhạc góc trên */
 .music-control {
   position: fixed;
   top: 20px;
@@ -45,8 +45,8 @@ body {
 }
 
 .card {
-  width: 290px;
-  height: 430px;
+  width: 320px;
+  height: 440px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -66,7 +66,7 @@ body {
   height: 100%;
   backface-visibility: hidden;
   border-radius: 20px;
-  padding: 20px 16px;
+  padding: 22px 20px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -83,9 +83,9 @@ body {
 }
 
 .heart-icon {
-  font-size: 4rem;
+  font-size: 4.5rem;
   animation: beat 1.2s infinite ease-in-out;
-  margin-top: 25px;
+  margin-top: 30px;
 }
 
 @keyframes beat {
@@ -94,16 +94,16 @@ body {
 }
 
 .card-front h2 {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   margin: 10px 0;
   text-shadow: 1px 2px 4px rgba(0,0,0,0.2);
 }
 
 .tap-hint {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   opacity: 0.9;
   animation: pulse 1.5s infinite;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
 @keyframes pulse {
@@ -119,7 +119,7 @@ body {
 }
 
 .card-inside .title {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   margin: 10px 0 5px 0;
   color: #e91e63;
   font-weight: bold;
@@ -127,7 +127,7 @@ body {
 }
 
 .center-heart-container {
-  margin: 4px 0;
+  margin: 5px 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -135,7 +135,7 @@ body {
 }
 
 .beating-heart {
-  font-size: 3.8rem;
+  font-size: 4rem;
   animation: heartPulse 1s infinite alternate ease-in-out;
   filter: drop-shadow(0 4px 10px rgba(233, 30, 99, 0.45));
 }
@@ -146,23 +146,23 @@ body {
 }
 
 .card-inside .message {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   line-height: 1.5;
   color: #444;
-  min-height: 90px;
+  min-height: 95px;
   text-align: left;
-  margin: 4px 0;
+  margin: 5px 0;
   width: 100%;
 }
 
 .signature {
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #e91e63;
   margin-bottom: 5px;
 }
 
-/* 5 ẢNH BUNG XÒE */
+/* 5 BỨC ẢNH PHÂN BỐ NỔI BẬT */
 .floating-photos {
   position: absolute;
   top: 0;
@@ -186,50 +186,82 @@ body {
 }
 
 .photo-item img {
-  width: 82px;
-  height: 82px;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
   border-radius: 50%;
-  border: 3px solid #ffffff;
-  box-shadow: 0 6px 18px rgba(233, 30, 99, 0.45);
+  border: 4px solid #ffffff;
+  box-shadow: 0 8px 22px rgba(233, 30, 99, 0.45);
 }
 
 .photo-item span {
   background: #ffffff;
   color: #d81b60;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 14px;
+  font-size: 0.82rem;
   font-weight: bold;
-  margin-top: 4px;
+  margin-top: 5px;
   box-shadow: 0 3px 8px rgba(0,0,0,0.18);
   white-space: nowrap;
 }
 
-/* TỌA ĐỘ BAY TRÊN ĐIỆN THOẠI */
+/* ======================================================== */
+/* ĐIỀU CHỈNH TỌA ĐỘ: CÔ NGA LÙI XUỐNG BẰNG HÀNG CÔ HẢI (180PX) */
+/* ======================================================== */
+
+/* Bên Trái: Cô Tiến (Đẩy nhẹ lên trên) - Cô Nga (Hạ xuống 180px ngang hàng Cô Hải) */
 .card-container.open-active .photo-left-top {
-  transform: translate(-185px, -130px) scale(0.9) rotate(-6deg);
+  transform: translate(-280px, -180px) scale(1) rotate(-6deg);
   opacity: 1;
 }
 
 .card-container.open-active .photo-left-bottom {
-  transform: translate(-185px, 115px) scale(0.9) rotate(5deg);
+  transform: translate(-280px, 180px) scale(1) rotate(5deg); /* Hạ Cô Nga xuống 180px */
   opacity: 1;
 }
 
+/* Bên Phải: Cô Nguyệt ở trên - Mẹ Yêu ở giữa - Cô Hải ở dưới (180px) */
 .card-container.open-active .photo-right-top {
-  transform: translate(110px, -170px) scale(0.9) rotate(6deg);
+  transform: translate(180px, -200px) scale(1) rotate(6deg);
   opacity: 1;
 }
 
 .card-container.open-active .photo-right-middle {
-  transform: translate(120px, -10px) scale(1);
+  transform: translate(195px, -10px) scale(1.08);
   opacity: 1;
 }
 
 .card-container.open-active .photo-right-bottom {
-  transform: translate(110px, 145px) scale(0.9) rotate(-5deg);
+  transform: translate(180px, 180px) scale(1) rotate(-5deg); /* Cô Hải ở mốc 180px */
   opacity: 1;
+}
+
+/* Responsive cho di động */
+@media (max-width: 768px) {
+  .card {
+    width: 280px;
+    height: 420px;
+  }
+  .photo-item img {
+    width: 80px;
+    height: 80px;
+  }
+  .card-container.open-active .photo-left-top {
+    transform: translate(-185px, -140px) scale(0.85);
+  }
+  .card-container.open-active .photo-left-bottom {
+    transform: translate(-185px, 140px) scale(0.85); /* Cô Nga trên Mobile lùi xuống 140px */
+  }
+  .card-container.open-active .photo-right-top {
+    transform: translate(110px, -160px) scale(0.85);
+  }
+  .card-container.open-active .photo-right-middle {
+    transform: translate(120px, -10px) scale(0.95);
+  }
+  .card-container.open-active .photo-right-bottom {
+    transform: translate(110px, 140px) scale(0.85);
+  }
 }
 
 /* Hiệu ứng hoa rơi */
