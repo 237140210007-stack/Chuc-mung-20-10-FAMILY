@@ -3,6 +3,22 @@ const wishMessage = "Kính chúc Mẹ, cô Nga, cô Nguyệt, cô Tiến và cô
 
 let isOpened = false;
 let typeIndex = 0;
+let player;
+
+// Khởi tạo trình phát YouTube từ video https://youtu.be/WWpCi2xYUOc
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('yt-player', {
+    height: '0',
+    width: '0',
+    videoId: 'WWpCi2xYUOc',
+    playerVars: {
+      'autoplay': 0,
+      'controls': 0,
+      'loop': 1,
+      'playlist': 'WWpCi2xYUOc'
+    }
+  });
+}
 
 function toggleCard() {
   const card = document.querySelector('.card');
@@ -14,18 +30,24 @@ function toggleCard() {
   isOpened = card.classList.contains('open');
 
   if (isOpened) {
-    // 1. Phát nhạc nền không lời
-    if (bgMusic) {
+    // 1. Phát nhạc từ YouTube (hoặc nhạc dự phòng nếu bị chặn)
+    if (player && typeof player.playVideo === 'function') {
+      player.playVideo();
+    } else if (bgMusic) {
       bgMusic.volume = 0.4;
       bgMusic.play().catch(e => console.log("Lỗi phát nhạc:", e));
     }
 
-    // 2. Chạy hiệu ứng gõ chữ và phát giọng đọc
+    // 2. Chạy hiệu ứng gõ chữ và phát lời đọc
     if (typeIndex === 0) {
       setTimeout(typeWriter, 500);
       playGreetingSound();
     }
   } else {
+    // Tạm dừng nhạc khi đóng thiệp
+    if (player && typeof player.pauseVideo === 'function') {
+      player.pauseVideo();
+    }
     if (bgMusic) {
       bgMusic.pause();
     }
