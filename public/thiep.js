@@ -1,4 +1,4 @@
-// Nội dung lời chúc dành cho Mẹ
+// Lời chúc dành cho Mẹ
 const wishMessage = "Chúc Mẹ luôn mạnh khỏe, hạnh phúc và luôn nở nụ cười tươi trên môi. Cảm ơn Mẹ vì đã luôn yêu thương và vất vả vì con!";
 
 let isOpened = false;
@@ -10,22 +10,22 @@ function toggleCard() {
   isOpened = card.classList.contains('open');
 
   if (isOpened && typeIndex === 0) {
-    // Bắt đầu hiệu ứng gõ chữ khi mở thiệp lần đầu
-    setTimeout(typeWriter, 500);
+    // Chờ thiệp lật xong mới bắt đầu hiệu ứng chữ chạy và phát giọng đọc
+    setTimeout(typeWriter, 400);
     playGreetingSound();
   }
 }
 
-// Hiệu ứng gõ chữ tự động
+// Hiệu ứng chữ chạy tự động
 function typeWriter() {
   if (typeIndex < wishMessage.length) {
     document.getElementById("typedText").innerHTML += wishMessage.charAt(typeIndex);
     typeIndex++;
-    setTimeout(typeWriter, 50); // Tốc độ xuất hiện từng chữ (ms)
+    setTimeout(typeWriter, 45);
   }
 }
 
-// Giọng đọc lời chúc Tiếng Việt
+// Giọng đọc lời chúc tiếng Việt chuẩn
 function playGreetingSound() {
   try {
     const text = encodeURIComponent("Chúc mẹ luôn mạnh khỏe và hạnh phúc! Con yêu mẹ nhiều!");
