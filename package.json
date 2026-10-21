@@ -1,7 +1,7 @@
 {
-  "name": "chuc-mung-20-10-family",
+  "name": "chuc-mung-sinh-nhat",
   "version": "1.0.0",
-  "description": "Website Thiep Chuc Mung 20-10 Cho Me",
+  "description": "Website Thiep Chuc Mung Sinh Nhat",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
