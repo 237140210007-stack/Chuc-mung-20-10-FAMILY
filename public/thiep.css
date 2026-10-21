@@ -137,7 +137,7 @@ body {
   margin-bottom: 5px;
 }
 
-/* Mobile responsive */
+/* Responsive cho di động */
 @media (max-width: 768px) {
   .card {
     width: 290px;
