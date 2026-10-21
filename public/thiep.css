@@ -5,13 +5,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+  background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Nút Bật/Tắt Nhạc góc trên */
+/* NÚT BẬT / TẮT NHẠC */
 .music-control {
   position: fixed;
   top: 20px;
@@ -24,10 +24,10 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 1.4rem;
-  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+  box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
   z-index: 9999;
   cursor: pointer;
-  border: 3px solid #ff758c;
+  border: 3px solid #4a90e2;
   pointer-events: auto;
 }
 
@@ -44,14 +44,15 @@ body {
   position: relative;
 }
 
+/* KHUNG THIỆP GỌN GÀNG TẬP TRUNG TRUNG TÂM */
 .card {
-  width: 320px;
-  height: 440px;
+  width: 330px;
+  height: 460px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
   cursor: pointer;
-  box-shadow: 0 15px 35px rgba(255, 105, 180, 0.35);
+  box-shadow: 0 15px 35px rgba(74, 144, 226, 0.35);
   border-radius: 20px;
   z-index: 10;
 }
@@ -66,7 +67,7 @@ body {
   height: 100%;
   backface-visibility: hidden;
   border-radius: 20px;
-  padding: 22px 20px;
+  padding: 24px 22px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -75,14 +76,15 @@ body {
   text-align: center;
 }
 
+/* MẶT NGOÀI THIỆP */
 .card-front {
-  background: linear-gradient(145deg, #ff758c, #ff7eb3);
+  background: linear-gradient(145deg, #4a90e2, #50e3c2);
   color: white;
   border: 4px solid #ffffff;
   z-index: 2;
 }
 
-.heart-icon {
+.cake-icon {
   font-size: 4.5rem;
   animation: beat 1.2s infinite ease-in-out;
   margin-top: 30px;
@@ -90,7 +92,7 @@ body {
 
 @keyframes beat {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.25); }
+  50% { transform: scale(1.2); }
 }
 
 .card-front h2 {
@@ -111,23 +113,24 @@ body {
   50% { opacity: 1; }
 }
 
+/* MẶT TRONG THIỆP */
 .card-inside {
   background: #ffffff;
-  color: #d81b60;
+  color: #1a5276;
   transform: rotateY(180deg);
-  border: 4px solid #ff758c;
+  border: 4px solid #4a90e2;
 }
 
 .card-inside .title {
-  font-size: 1.15rem;
-  margin: 10px 0 5px 0;
-  color: #e91e63;
+  font-size: 1.2rem;
+  margin: 5px 0 2px 0;
+  color: #1b4f72;
   font-weight: bold;
   line-height: 1.4;
 }
 
 .center-heart-container {
-  margin: 5px 0;
+  margin: 2px 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -135,161 +138,67 @@ body {
 }
 
 .beating-heart {
-  font-size: 4rem;
+  font-size: 3.8rem;
   animation: heartPulse 1s infinite alternate ease-in-out;
-  filter: drop-shadow(0 4px 10px rgba(233, 30, 99, 0.45));
+  filter: drop-shadow(0 4px 10px rgba(74, 144, 226, 0.4));
 }
 
 @keyframes heartPulse {
   0% { transform: scale(0.92); }
-  100% { transform: scale(1.2); }
+  100% { transform: scale(1.18); }
 }
 
 .card-inside .message {
-  font-size: 0.92rem;
-  line-height: 1.5;
-  color: #444;
-  min-height: 95px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #333333;
+  min-height: 150px;
   text-align: left;
-  margin: 5px 0;
+  margin: 4px 0;
   width: 100%;
 }
 
 .signature {
   font-weight: bold;
-  font-size: 0.95rem;
-  color: #e91e63;
+  font-size: 0.98rem;
+  color: #1b4f72;
   margin-bottom: 5px;
 }
 
-/* 5 BỨC ẢNH PHÂN BỐ NỔI BẬT */
-.floating-photos {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 30;
-}
-
-.photo-item {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0);
-  opacity: 0;
-  transition: all 1.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.photo-item img {
-  width: 110px;
-  height: 110px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #ffffff;
-  box-shadow: 0 8px 22px rgba(233, 30, 99, 0.45);
-}
-
-.photo-item span {
-  background: #ffffff;
-  color: #d81b60;
-  padding: 4px 12px;
-  border-radius: 14px;
-  font-size: 0.82rem;
-  font-weight: bold;
-  margin-top: 5px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.18);
-  white-space: nowrap;
-}
-
-/* ======================================================== */
-/* ĐIỀU CHỈNH TỌA ĐỘ: CÔ NGA LÙI XUỐNG BẰNG HÀNG CÔ HẢI (180PX) */
-/* ======================================================== */
-
-/* Bên Trái: Cô Tiến (Đẩy nhẹ lên trên) - Cô Nga (Hạ xuống 180px ngang hàng Cô Hải) */
-.card-container.open-active .photo-left-top {
-  transform: translate(-280px, -180px) scale(1) rotate(-6deg);
-  opacity: 1;
-}
-
-.card-container.open-active .photo-left-bottom {
-  transform: translate(-280px, 180px) scale(1) rotate(5deg); /* Hạ Cô Nga xuống 180px */
-  opacity: 1;
-}
-
-/* Bên Phải: Cô Nguyệt ở trên - Mẹ Yêu ở giữa - Cô Hải ở dưới (180px) */
-.card-container.open-active .photo-right-top {
-  transform: translate(180px, -200px) scale(1) rotate(6deg);
-  opacity: 1;
-}
-
-.card-container.open-active .photo-right-middle {
-  transform: translate(195px, -10px) scale(1.08);
-  opacity: 1;
-}
-
-.card-container.open-active .photo-right-bottom {
-  transform: translate(180px, 180px) scale(1) rotate(-5deg); /* Cô Hải ở mốc 180px */
-  opacity: 1;
-}
-
-/* Responsive cho di động */
+/* Mobile responsive */
 @media (max-width: 768px) {
   .card {
-    width: 280px;
-    height: 420px;
-  }
-  .photo-item img {
-    width: 80px;
-    height: 80px;
-  }
-  .card-container.open-active .photo-left-top {
-    transform: translate(-185px, -140px) scale(0.85);
-  }
-  .card-container.open-active .photo-left-bottom {
-    transform: translate(-185px, 140px) scale(0.85); /* Cô Nga trên Mobile lùi xuống 140px */
-  }
-  .card-container.open-active .photo-right-top {
-    transform: translate(110px, -160px) scale(0.85);
-  }
-  .card-container.open-active .photo-right-middle {
-    transform: translate(120px, -10px) scale(0.95);
-  }
-  .card-container.open-active .photo-right-bottom {
-    transform: translate(110px, 140px) scale(0.85);
+    width: 290px;
+    height: 450px;
   }
 }
 
-/* Hiệu ứng hoa rơi */
-.snowflake {
+/* Hiệu ứng bóng bay rơi */
+.balloon {
   position: fixed;
   top: -10%;
   z-index: 0;
   user-select: none;
   cursor: default;
-  animation-name: snowflakes-fall, snowflakes-shake;
+  animation-name: balloons-fall, balloons-shake;
   animation-duration: 10s, 3s;
   animation-timing-function: linear, ease-in-out;
   animation-iteration-count: infinite, infinite;
 }
 
-.snowflake:nth-of-type(1) { left: 10%; animation-delay: 0s, 0s; font-size: 1.5rem; }
-.snowflake:nth-of-type(2) { left: 25%; animation-delay: 2s, 1s; font-size: 2rem; }
-.snowflake:nth-of-type(3) { left: 40%; animation-delay: 4s, 2s; font-size: 1.3rem; }
-.snowflake:nth-of-type(4) { left: 60%; animation-delay: 1s, 1s; font-size: 1.8rem; }
-.snowflake:nth-of-type(5) { left: 75%; animation-delay: 3s, 2s; font-size: 2.2rem; }
-.snowflake:nth-of-type(6) { left: 90%; animation-delay: 5s, 1.5s; font-size: 1.5rem; }
+.balloon:nth-of-type(1) { left: 10%; animation-delay: 0s, 0s; font-size: 1.5rem; }
+.balloon:nth-of-type(2) { left: 25%; animation-delay: 2s, 1s; font-size: 2rem; }
+.balloon:nth-of-type(3) { left: 40%; animation-delay: 4s, 2s; font-size: 1.3rem; }
+.balloon:nth-of-type(4) { left: 60%; animation-delay: 1s, 1s; font-size: 1.8rem; }
+.balloon:nth-of-type(5) { left: 75%; animation-delay: 3s, 2s; font-size: 2.2rem; }
+.balloon:nth-of-type(6) { left: 90%; animation-delay: 5s, 1.5s; font-size: 1.5rem; }
 
-@keyframes snowflakes-fall {
+@keyframes balloons-fall {
   0% { top: -10%; }
   100% { top: 100%; }
 }
 
-@keyframes snowflakes-shake {
+@keyframes balloons-shake {
   0%, 100% { transform: translateX(0); }
   50% { transform: translateX(50px); }
 }
