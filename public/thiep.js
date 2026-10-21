@@ -3,55 +3,20 @@ const wishMessage = "Chúng con không giỏi nói lời ngọt ngào, nhưng ch
 
 let isOpened = false;
 let typeIndex = 0;
-let ytPlayer;
 
-// Tự động phát nhạc ngay khi vừa nạp xong trang web
-window.addEventListener('load', () => {
-  autoPlayAudio();
-});
+const bgMusic = document.getElementById('bgMusic');
 
-// Tự động kích hoạt âm thanh ngay khi có tương tác đầu tiên trên trang (chạm/click)
-function unlockAndPlay() {
-  autoPlayAudio();
-  document.removeEventListener('touchstart', unlockAndPlay);
-  document.removeEventListener('click', unlockAndPlay);
-}
-document.addEventListener('touchstart', unlockAndPlay, { once: true });
-document.addEventListener('click', unlockAndPlay, { once: true });
-
-// Khởi tạo YouTube Iframe API & phát tự động ngay khi sẵn sàng
-function onYouTubeIframeAPIReady() {
-  ytPlayer = new YT.Player('yt-player', {
-    height: '0',
-    width: '0',
-    videoId: 'tIjUEqm60Ig', // Video Ba Kể Con Nghe
-    playerVars: {
-      'autoplay': 1, // Kích hoạt tự động phát ngay
-      'controls': 0,
-      'start': 78,    // Bắt đầu từ đoạn Điệp khúc (giây 78)
-      'loop': 1,
-      'playlist': 'tIjUEqm60Ig'
-    },
-    events: {
-      'onReady': onPlayerReady
-    }
-  });
-}
-
-function onPlayerReady(event) {
-  event.target.playVideo();
-}
-
-function autoPlayAudio() {
-  if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
-    ytPlayer.playVideo();
-  }
-  const bgMusic = document.getElementById('bgMusic');
+// Tự động kích hoạt phát nhạc ngay khi bấm/chạm đầu tiên vào màn hình
+function playAudioDirectly() {
   if (bgMusic) {
     bgMusic.volume = 0.6;
     bgMusic.play().catch(() => {});
   }
 }
+
+// Lắng nghe thao tác chạm đầu tiên trên điện thoại để mở âm thanh ngầm
+document.addEventListener('touchstart', playAudioDirectly, { once: true });
+document.addEventListener('click', playAudioDirectly, { once: true });
 
 function toggleCard() {
   const card = document.querySelector('.card');
@@ -61,8 +26,8 @@ function toggleCard() {
   cardContainer.classList.toggle('open-active');
   isOpened = card.classList.contains('open');
 
-  // Đảm bảo nhạc vẫn tiếp tục chạy mượt mà khi bấm mở thiệp
-  autoPlayAudio();
+  // Đảm bảo nhạc phát mượt khi bấm mở thiệp
+  playAudioDirectly();
 
   if (isOpened && typeIndex === 0) {
     setTimeout(typeWriter, 500);
