@@ -17,11 +17,6 @@
     <div class="balloon">✨</div>
   </div>
 
-  <!-- Nút Bật/Tắt Nhạc nổi góc trên -->
-  <div class="music-control" id="musicBtn" onclick="toggleMusic(event)">
-    <span id="musicIcon">🎵</span>
-  </div>
-
   <div class="card-container">
     <!-- Khung thiệp chính -->
     <div class="card" onclick="toggleCard()">
@@ -34,18 +29,23 @@
 
       <!-- Mặt trong thiệp -->
       <div class="card-inside">
-        <h3 class="title">Happy Birthday Bố Iu!🎉🎁</h3>
+        <h3 class="title">Happy Birthday Bố!🎉🎁</h3>
         
         <!-- Bánh sinh nhật 3D đập nhẹ ở trung tâm -->
         <div class="center-heart-container">
           <div class="beating-heart">🎂</div>
         </div>
+
+        <p id="typedText" class="message"></p>
+        <div class="signature"> ❤️</div>
+      </div>
+    </div>
   </div>
 
   <!-- Trình phát YouTube ẩn phát đoạn Điệp khúc bài "Ba Kể Con Nghe" -->
   <div id="yt-player" style="position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none;"></div>
 
-  <!-- Audio MP3 dự phòng -->
+  <!-- Audio MP3 dự phòng tự động chạy ngay -->
   <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
     <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
   </audio>
