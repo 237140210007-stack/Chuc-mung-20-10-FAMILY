@@ -4,39 +4,35 @@ const wishMessage = "Chúng con không giỏi nói lời ngọt ngào, nhưng ch
 let isOpened = false;
 let typeIndex = 0;
 
-const bgMusic = document.getElementById('bgMusic');
-
-// Kích hoạt nạp sẵn âm thanh khi có thao tác chạm màn hình
-function forcePlayAudio() {
-  if (bgMusic) {
-    bgMusic.volume = 0.7;
-    bgMusic.play().catch(err => console.log("Chờ bấm mở thiệp:", err));
-  }
-}
-
-document.addEventListener('touchstart', forcePlayAudio, { once: true });
-document.addEventListener('click', forcePlayAudio, { once: true });
-
 function toggleCard() {
   const card = document.querySelector('.card');
   const cardContainer = document.querySelector('.card-container');
+  const bgMusic = document.getElementById('bgMusic');
 
   card.classList.toggle('open');
-  cardContainer.classList.toggle('open-active');
+  if (cardContainer) {
+    cardContainer.classList.toggle('open-active');
+  }
+  
   isOpened = card.classList.contains('open');
 
   if (isOpened) {
-    // Phát nhạc mượt mà ngay khi bấm mở thiệp
+    // Kích hoạt phát nhạc trực tiếp ngay trong thao tác bấm lật thiệp
     if (bgMusic) {
-      bgMusic.volume = 0.7;
-      bgMusic.play().catch(e => console.log("Lỗi phát nhạc:", e));
+      bgMusic.volume = 0.8;
+      bgMusic.play().then(() => {
+        console.log("Đã phát nhạc thành công!");
+      }).catch(err => {
+        console.log("Lỗi phát nhạc:", err);
+      });
     }
 
-    // Chạy hiệu ứng gõ chữ
+    // Hiệu ứng gõ chữ
     if (typeIndex === 0) {
       setTimeout(typeWriter, 500);
     }
   } else {
+    // Đóng thiệp thì dừng nhạc
     if (bgMusic) {
       bgMusic.pause();
     }
