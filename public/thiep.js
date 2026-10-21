@@ -3,23 +3,54 @@ const wishMessage = "Chúng con không giỏi nói lời ngọt ngào, nhưng ch
 
 let isOpened = false;
 let typeIndex = 0;
-let isPlaying = false;
 let ytPlayer;
 
-// Tích hợp YouTube Iframe API cài đặt phát đúng đoạn điệp khúc "Ba Kể Con Nghe" (giây 78)
+// Tự động phát nhạc ngay khi vừa nạp xong trang web
+window.addEventListener('load', () => {
+  autoPlayAudio();
+});
+
+// Tự động kích hoạt âm thanh ngay khi có tương tác đầu tiên trên trang (chạm/click)
+function unlockAndPlay() {
+  autoPlayAudio();
+  document.removeEventListener('touchstart', unlockAndPlay);
+  document.removeEventListener('click', unlockAndPlay);
+}
+document.addEventListener('touchstart', unlockAndPlay, { once: true });
+document.addEventListener('click', unlockAndPlay, { once: true });
+
+// Khởi tạo YouTube Iframe API & phát tự động ngay khi sẵn sàng
 function onYouTubeIframeAPIReady() {
   ytPlayer = new YT.Player('yt-player', {
     height: '0',
     width: '0',
     videoId: 'tIjUEqm60Ig', // Video Ba Kể Con Nghe
     playerVars: {
-      'autoplay': 0,
+      'autoplay': 1, // Kích hoạt tự động phát ngay
       'controls': 0,
-      'start': 78,   // Bắt đầu từ đoạn Điệp khúc (giây 78)
+      'start': 78,    // Bắt đầu từ đoạn Điệp khúc (giây 78)
       'loop': 1,
       'playlist': 'tIjUEqm60Ig'
+    },
+    events: {
+      'onReady': onPlayerReady
     }
   });
+}
+
+function onPlayerReady(event) {
+  event.target.playVideo();
+}
+
+function autoPlayAudio() {
+  if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+    ytPlayer.playVideo();
+  }
+  const bgMusic = document.getElementById('bgMusic');
+  if (bgMusic) {
+    bgMusic.volume = 0.6;
+    bgMusic.play().catch(() => {});
+  }
 }
 
 function toggleCard() {
@@ -30,53 +61,11 @@ function toggleCard() {
   cardContainer.classList.toggle('open-active');
   isOpened = card.classList.contains('open');
 
-  if (isOpened) {
-    playMusic();
-    if (typeIndex === 0) {
-      setTimeout(typeWriter, 500);
-    }
-  } else {
-    pauseMusic();
-  }
-}
+  // Đảm bảo nhạc vẫn tiếp tục chạy mượt mà khi bấm mở thiệp
+  autoPlayAudio();
 
-function playMusic() {
-  const musicIcon = document.getElementById('musicIcon');
-  const bgMusic = document.getElementById('bgMusic');
-
-  if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
-    ytPlayer.playVideo();
-    isPlaying = true;
-    if (musicIcon) musicIcon.classList.add('playing');
-  } else if (bgMusic) {
-    bgMusic.volume = 0.6;
-    bgMusic.play().then(() => {
-      isPlaying = true;
-      if (musicIcon) musicIcon.classList.add('playing');
-    }).catch(() => {});
-  }
-}
-
-function pauseMusic() {
-  const musicIcon = document.getElementById('musicIcon');
-  const bgMusic = document.getElementById('bgMusic');
-
-  if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
-    ytPlayer.pauseVideo();
-  }
-  if (bgMusic) {
-    bgMusic.pause();
-  }
-  isPlaying = false;
-  if (musicIcon) musicIcon.classList.remove('playing');
-}
-
-function toggleMusic(e) {
-  if (e) e.stopPropagation();
-  if (isPlaying) {
-    pauseMusic();
-  } else {
-    playMusic();
+  if (isOpened && typeIndex === 0) {
+    setTimeout(typeWriter, 500);
   }
 }
 
