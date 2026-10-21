@@ -11,34 +11,6 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* NÚT BẬT / TẮT NHẠC */
-.music-control {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  width: 48px;
-  height: 48px;
-  background: #ffffff;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.4rem;
-  box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
-  z-index: 9999;
-  cursor: pointer;
-  border: 3px solid #4a90e2;
-  pointer-events: auto;
-}
-
-.music-control span.playing {
-  animation: spin 3s linear infinite;
-}
-
-@keyframes spin {
-  100% { transform: rotate(360deg); }
-}
-
 .card-container {
   perspective: 1200px;
   position: relative;
