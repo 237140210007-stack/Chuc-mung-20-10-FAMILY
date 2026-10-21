@@ -3,24 +3,19 @@ const wishMessage = "Chúng con không giỏi nói lời ngọt ngào, nhưng ch
 
 let isOpened = false;
 let typeIndex = 0;
-let isMusicStarted = false;
 
-// Link YouTube nhúng bài "Ba Kể Con Nghe" Acoustic phát tự động từ đoạn Điệp khúc (start=78 giây)
-const youtubeAudioUrl = "https://www.youtube.com/embed/tIjUEqm60Ig?autoplay=1&start=78&loop=1&playlist=tIjUEqm60Ig&enablejsapi=1";
+const bgMusic = document.getElementById('bgMusic');
 
-function playYouTubeAudio() {
-  if (!isMusicStarted) {
-    const ytFrame = document.getElementById('ytAudio');
-    if (ytFrame) {
-      ytFrame.src = youtubeAudioUrl;
-      isMusicStarted = true;
-    }
+// Kích hoạt nạp sẵn âm thanh khi có thao tác chạm màn hình
+function forcePlayAudio() {
+  if (bgMusic) {
+    bgMusic.volume = 0.7;
+    bgMusic.play().catch(err => console.log("Chờ bấm mở thiệp:", err));
   }
 }
 
-// Tự động kích hoạt phát nhạc ngay khi người dùng chạm/bấm bất kỳ đâu trên màn hình
-document.addEventListener('touchstart', playYouTubeAudio, { once: true });
-document.addEventListener('click', playYouTubeAudio, { once: true });
+document.addEventListener('touchstart', forcePlayAudio, { once: true });
+document.addEventListener('click', forcePlayAudio, { once: true });
 
 function toggleCard() {
   const card = document.querySelector('.card');
@@ -30,11 +25,21 @@ function toggleCard() {
   cardContainer.classList.toggle('open-active');
   isOpened = card.classList.contains('open');
 
-  // Đảm bảo nhạc chắc chắn chạy khi bấm mở thiệp
-  playYouTubeAudio();
+  if (isOpened) {
+    // Phát nhạc mượt mà ngay khi bấm mở thiệp
+    if (bgMusic) {
+      bgMusic.volume = 0.7;
+      bgMusic.play().catch(e => console.log("Lỗi phát nhạc:", e));
+    }
 
-  if (isOpened && typeIndex === 0) {
-    setTimeout(typeWriter, 500);
+    // Chạy hiệu ứng gõ chữ
+    if (typeIndex === 0) {
+      setTimeout(typeWriter, 500);
+    }
+  } else {
+    if (bgMusic) {
+      bgMusic.pause();
+    }
   }
 }
 
