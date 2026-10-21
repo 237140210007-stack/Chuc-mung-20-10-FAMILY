@@ -3,22 +3,24 @@ const wishMessage = "Chúng con không giỏi nói lời ngọt ngào, nhưng ch
 
 let isOpened = false;
 let typeIndex = 0;
+let isMusicStarted = false;
 
-const bgMusic = document.getElementById('bgMusic');
+// Link YouTube nhúng bài "Ba Kể Con Nghe" Acoustic phát tự động từ đoạn Điệp khúc (start=78 giây)
+const youtubeAudioUrl = "https://www.youtube.com/embed/tIjUEqm60Ig?autoplay=1&start=78&loop=1&playlist=tIjUEqm60Ig&enablejsapi=1";
 
-// Unlock phát âm thanh trên Safari / Zalo khi chạm màn hình
-function unlockAudio() {
-  if (bgMusic) {
-    bgMusic.volume = 0.6;
-    bgMusic.play().then(() => {
-      bgMusic.pause();
-    }).catch(() => {});
+function playYouTubeAudio() {
+  if (!isMusicStarted) {
+    const ytFrame = document.getElementById('ytAudio');
+    if (ytFrame) {
+      ytFrame.src = youtubeAudioUrl;
+      isMusicStarted = true;
+    }
   }
-  document.removeEventListener('touchstart', unlockAudio);
-  document.removeEventListener('click', unlockAudio);
 }
-document.addEventListener('touchstart', unlockAudio, { once: true });
-document.addEventListener('click', unlockAudio, { once: true });
+
+// Tự động kích hoạt phát nhạc ngay khi người dùng chạm/bấm bất kỳ đâu trên màn hình
+document.addEventListener('touchstart', playYouTubeAudio, { once: true });
+document.addEventListener('click', playYouTubeAudio, { once: true });
 
 function toggleCard() {
   const card = document.querySelector('.card');
@@ -28,21 +30,11 @@ function toggleCard() {
   cardContainer.classList.toggle('open-active');
   isOpened = card.classList.contains('open');
 
-  if (isOpened) {
-    // Phát nhạc mượt mà ngay khi mở thiệp
-    if (bgMusic) {
-      bgMusic.volume = 0.6;
-      bgMusic.play().catch(e => console.log("Lỗi phát nhạc:", e));
-    }
+  // Đảm bảo nhạc chắc chắn chạy khi bấm mở thiệp
+  playYouTubeAudio();
 
-    // Chạy hiệu ứng gõ chữ
-    if (typeIndex === 0) {
-      setTimeout(typeWriter, 500);
-    }
-  } else {
-    if (bgMusic) {
-      bgMusic.pause();
-    }
+  if (isOpened && typeIndex === 0) {
+    setTimeout(typeWriter, 500);
   }
 }
 
