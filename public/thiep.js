@@ -17,23 +17,15 @@ function toggleCard() {
   isOpened = card.classList.contains('open');
 
   if (isOpened) {
+    // Kích hoạt phát nhạc từ đoạn Điệp khúc (giây thứ 78)
     if (bgMusic) {
+      bgMusic.currentTime = 78; // 👈 Nhảy trực tiếp tới giây 78 (Điệp khúc)
       bgMusic.volume = 0.8;
-
-      // Đảm bảo nhạc đệm đã sẵn sàng rồi mới nhảy tới giây 78 (đoạn điệp khúc)
-      const playChorus = () => {
-        bgMusic.currentTime = 78; // Giây thứ 78: "Khi nghe nhạc con nhẹ nhàng hơn..."
-        bgMusic.play().catch(err => console.log("Lỗi phát nhạc:", err));
-      };
-
-      // Nếu nhạc đã nạp dữ liệu xong -> Phát ngay
-      if (bgMusic.readyState >= 1) {
-        playChorus();
-      } else {
-        // Nếu chưa nạp xong -> Đợi nạp xong metadata rồi nhảy tới giây 78
-        bgMusic.addEventListener('loadedmetadata', playChorus, { once: true });
-        bgMusic.load(); // Kích hoạt nạp dữ liệu
-      }
+      bgMusic.play().then(() => {
+        console.log("Đã phát nhạc từ đoạn điệp khúc!");
+      }).catch(err => {
+        console.log("Lỗi phát nhạc:", err);
+      });
     }
 
     // Hiệu ứng gõ chữ
