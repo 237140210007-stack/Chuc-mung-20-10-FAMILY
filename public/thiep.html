@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/thiep.css">
 </head>
 <body>
-  <!-- Hiệu ứng bóng bay & bóng bóng rơi nhẹ nhàng -->
+  <!-- Hiệu ứng bóng bay & bóng rơi nhẹ nhàng -->
   <div class="balloons" aria-hidden="true">
     <div class="balloon">🎈</div>
     <div class="balloon">✨</div>
@@ -42,10 +42,13 @@
     </div>
   </div>
 
-  <!-- Audio MP3 phát nhạc không lời nhẹ nhàng tự động -->
-  <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
-    <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
-  </audio>
+  <!-- Iframe YouTube ẨN HOÀN TOÀN (Kích thước 1x1px giấu kín) -->
+  <iframe 
+    id="ytAudio" 
+    style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; border: none;"
+    src="" 
+    allow="autoplay">
+  </iframe>
 
   <script src="/thiep.js"></script>
 </body>
