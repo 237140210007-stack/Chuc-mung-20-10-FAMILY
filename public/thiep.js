@@ -1,23 +1,26 @@
-const wishMessage = "Kính chúc Mẹ, cô Nga, cô Nguyệt, cô Tiến và cô Hải luôn xinh đẹp, mạnh khỏe, hạnh phúc và luôn tràn ngập niềm vui. Cảm ơn những người phụ nữ tuyệt vời nhất của gia đình mình!";
+// Lời chúc sinh nhật tình cảm gửi Bố
+const wishMessage = "Chúng con không giỏi nói lời ngọt ngào, nhưng chúng con thương bố rất nhiều 🥹. Chúc bố sinh nhật thật hạnh phúc, nhiều niềm vui và bình an. Gia đình mong bố luôn mạnh khỏe, xây một ngôi nhà thật đẹp!! Cảm ơn bố vì đã luôn âm thầm hy sinh cho gia đình. Hehe quà của chúng con gửi tặng bố sau nha ạ. Happy Birthday Bố!";
 
 let isOpened = false;
 let typeIndex = 0;
 let isPlaying = false;
+let ytPlayer;
 
-const bgMusic = document.getElementById('bgMusic');
-
-// Kích hoạt unlock Audio trên iOS Safari / Zalo Browser ngay khi có bất kỳ tương tác chạm vào màn hình
-function unlockAudio() {
-  if (bgMusic) {
-    bgMusic.play().then(() => {
-      bgMusic.pause();
-    }).catch(() => {});
-  }
-  document.removeEventListener('touchstart', unlockAudio);
-  document.removeEventListener('click', unlockAudio);
+// Tích hợp YouTube Iframe API cài đặt phát đúng đoạn điệp khúc "Ba Kể Con Nghe" (giây 78)
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('yt-player', {
+    height: '0',
+    width: '0',
+    videoId: 'tIjUEqm60Ig', // Video Ba Kể Con Nghe
+    playerVars: {
+      'autoplay': 0,
+      'controls': 0,
+      'start': 78,   // Bắt đầu từ đoạn Điệp khúc (giây 78)
+      'loop': 1,
+      'playlist': 'tIjUEqm60Ig'
+    }
+  });
 }
-document.addEventListener('touchstart', unlockAudio, { once: true });
-document.addEventListener('click', unlockAudio, { once: true });
 
 function toggleCard() {
   const card = document.querySelector('.card');
@@ -39,27 +42,33 @@ function toggleCard() {
 
 function playMusic() {
   const musicIcon = document.getElementById('musicIcon');
-  if (bgMusic) {
+  const bgMusic = document.getElementById('bgMusic');
+
+  if (ytPlayer && typeof ytPlayer.playVideo === 'function') {
+    ytPlayer.playVideo();
+    isPlaying = true;
+    if (musicIcon) musicIcon.classList.add('playing');
+  } else if (bgMusic) {
     bgMusic.volume = 0.6;
-    const promise = bgMusic.play();
-    if (promise !== undefined) {
-      promise.then(() => {
-        isPlaying = true;
-        if (musicIcon) musicIcon.classList.add('playing');
-      }).catch(err => {
-        console.log("Cần bấm nút nhạc để phát:", err);
-      });
-    }
+    bgMusic.play().then(() => {
+      isPlaying = true;
+      if (musicIcon) musicIcon.classList.add('playing');
+    }).catch(() => {});
   }
 }
 
 function pauseMusic() {
   const musicIcon = document.getElementById('musicIcon');
+  const bgMusic = document.getElementById('bgMusic');
+
+  if (ytPlayer && typeof ytPlayer.pauseVideo === 'function') {
+    ytPlayer.pauseVideo();
+  }
   if (bgMusic) {
     bgMusic.pause();
-    isPlaying = false;
-    if (musicIcon) musicIcon.classList.remove('playing');
   }
+  isPlaying = false;
+  if (musicIcon) musicIcon.classList.remove('playing');
 }
 
 function toggleMusic(e) {
@@ -75,6 +84,6 @@ function typeWriter() {
   if (typeIndex < wishMessage.length) {
     document.getElementById("typedText").innerHTML += wishMessage.charAt(typeIndex);
     typeIndex++;
-    setTimeout(typeWriter, 40);
+    setTimeout(typeWriter, 35);
   }
 }
