@@ -3,80 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Gia Đình Gửi Phụ Nữ Yêu Thương 💖</title>
+  <title>Chúc Mừng Sinh Nhật Bố Yêu 🎂💖</title>
   <link rel="stylesheet" href="/thiep.css">
 </head>
 <body>
-  <!-- Hiệu ứng hoa/trái tim rơi nền -->
-  <div class="snowflakes" aria-hidden="true">
-    <div class="snowflake">🌸</div>
-    <div class="snowflake">💖</div>
-    <div class="snowflake">🌸</div>
-    <div class="snowflake">✨</div>
-    <div class="snowflake">💖</div>
-    <div class="snowflake">🌸</div>
-    <div class="snowflake">✨</div>
+  <!-- Hiệu ứng bóng bay & bóng bóng rơi nhẹ nhàng -->
+  <div class="balloons" aria-hidden="true">
+    <div class="balloon">🎈</div>
+    <div class="balloon">✨</div>
+    <div class="balloon">🎂</div>
+    <div class="balloon">🎈</div>
+    <div class="balloon">🎁</div>
+    <div class="balloon">✨</div>
   </div>
 
-  <!-- Nút Bật/Tắt Nhạc nổi ở góc trên -->
+  <!-- Nút Bật/Tắt Nhạc nổi góc trên -->
   <div class="music-control" id="musicBtn" onclick="toggleMusic(event)">
     <span id="musicIcon">🎵</span>
   </div>
 
   <div class="card-container">
-    <!-- 5 Bức ảnh phân bố 2 bên -->
-    <div class="floating-photos">
-      <div class="photo-item photo-left-top">
-        <img src="/Tien.jpg" alt="Tiên">
-        <span>Cô Tiến 🌸</span>
-      </div>
-      <div class="photo-item photo-left-bottom">
-        <img src="/Nga.jpg" alt="Nga">
-        <span>Cô Nga 🌷</span>
-      </div>
-      <div class="photo-item photo-right-top">
-        <img src="/Nguyet.jpg" alt="Nguyệt">
-        <span>Cô Nguyệt ✨</span>
-      </div>
-      <div class="photo-item photo-right-middle">
-        <img src="/me.jpg" alt="Mẹ">
-        <span>Mẹ Yêu 💖</span>
-      </div>
-      <div class="photo-item photo-right-bottom">
-        <img src="/Hai.jpg" alt="Hải">
-        <span>Cô Hải 🌺</span>
-      </div>
-    </div>
-
     <!-- Khung thiệp chính -->
     <div class="card" onclick="toggleCard()">
       <!-- Mặt ngoài thiệp -->
       <div class="card-front">
-        <div class="heart-icon">❤️</div>
-        <h2>Gửi Phụ Nữ Nhà Mình!</h2>
+        <div class="cake-icon">🎂</div>
+        <h2>Chúc Mừng Sinh Nhật Bố!</h2>
         <p class="tap-hint">👉 Bấm vào đây để mở thiệp nhé 👈</p>
       </div>
 
       <!-- Mặt trong thiệp -->
       <div class="card-inside">
-        <h3 class="title">Kính Chúc Phụ Nữ Nhà Mình Nhân Ngày Yêu Thương 20/10! 🌹</h3>
+        <h3 class="title">Happy Birthday Bố Yêu! 🎉🎁</h3>
         
-        <!-- Trái tim 3D -->
+        <!-- Bánh sinh nhật 3D đập nhẹ ở trung tâm -->
         <div class="center-heart-container">
-          <div class="beating-heart">💖</div>
+          <div class="beating-heart">🎂</div>
         </div>
 
         <p id="typedText" class="message"></p>
-        <div class="signature"> Mãi mãi yêu thương! ❤️</div>
+        <div class="signature">Mãi mãi yêu Bố! ❤️</div>
       </div>
     </div>
   </div>
 
-  <!-- Thẻ Audio phát nhạc tương thích tuyệt đối di động & Zalo -->
+  <!-- Trình phát YouTube ẩn phát đoạn Điệp khúc bài "Ba Kể Con Nghe" -->
+  <div id="yt-player" style="position: absolute; width: 0; height: 0; opacity: 0; pointer-events: none;"></div>
+
+  <!-- Audio MP3 dự phòng -->
   <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
     <source src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Nạp API YouTube -->
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script src="/thiep.js"></script>
 </body>
 </html>
