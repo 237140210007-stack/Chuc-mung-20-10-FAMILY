@@ -17,11 +17,11 @@ function toggleCard() {
   isOpened = card.classList.contains('open');
 
   if (isOpened) {
-    // Kích hoạt phát nhạc trực tiếp ngay trong thao tác bấm lật thiệp
+    // Phát nhạc tự nhiên từ những giây đầu tiên của file MP3
     if (bgMusic) {
       bgMusic.volume = 0.8;
       bgMusic.play().then(() => {
-        console.log("Đã phát nhạc thành công!");
+        console.log("Đã phát nhạc từ đầu!");
       }).catch(err => {
         console.log("Lỗi phát nhạc:", err);
       });
