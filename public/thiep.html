@@ -42,13 +42,10 @@
     </div>
   </div>
 
-  <!-- Iframe YouTube ẨN HOÀN TOÀN (Kích thước 1x1px giấu kín) -->
-  <iframe 
-    id="ytAudio" 
-    style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; border: none;"
-    src="" 
-    allow="autoplay">
-  </iframe>
+  <!-- Thẻ phát nhạc MP3 từ thư mục public/nhac.mp3 -->
+  <audio id="bgMusic" loop playsinline webkit-playsinline preload="auto">
+    <source src="/nhac.mp3" type="audio/mpeg">
+  </audio>
 
   <script src="/thiep.js"></script>
 </body>
